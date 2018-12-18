@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import './item-add-form.css';
 
 export default class ItemAddFrom extends Component {
+  state = {
+    label: ''
+  };
 
   onLabelChange = (e) => {
     this.setState({
@@ -12,6 +15,9 @@ export default class ItemAddFrom extends Component {
   onSubmit = (e) => {
     e.preventDefault();
     this.props.onItemAdded(this.state.label);
+    this.setState({
+      label: ''
+    });
   };
 
   render() {
@@ -24,6 +30,7 @@ export default class ItemAddFrom extends Component {
           className="form-control"
           onChange={this.onLabelChange}
           placeholder="What needs to be done"
+          value={this.state.label}
         />
         <button className="btn btn-outline-secondary">
           Add Item
